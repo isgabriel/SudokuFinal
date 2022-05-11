@@ -151,8 +151,4 @@ public class Celula implements Serializable {
         hash = 79 * hash + Objects.hashCode(this.posicao);
         return hash;
     }
-
-    public static void main(String[] args) {
-        System.out.println(celula);
-    }
 }
