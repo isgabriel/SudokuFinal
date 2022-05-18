@@ -3,9 +3,7 @@ package br.poli.sudokuprojetofinal;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * Informações sobre uma célula individual na grade
- */
+// Informações sobre uma célula individual na grade
 public class Celula implements Serializable {
 
     // atributos da celula
@@ -14,13 +12,12 @@ public class Celula implements Serializable {
     private int valorProvisorio;
     private boolean bloqueado;
     private final CelulaPosicao posicao;
-    private static final String COR_VERMELHA = "\u001B[31m";
+    private static final String COR_AZUL = "\u001B[34m";
     private static final String COR_RESET = "\u001B[0m";
-    private static Celula celula;
 
     /**
      * Constrói um objeto Celula na linha e na coluna
-     *
+     * 
      * @param linha  a linha da posição da célula
      * @param coluna a coluna da posição da célula
      */
@@ -28,23 +25,17 @@ public class Celula implements Serializable {
         this.posicao = new CelulaPosicao(linha, coluna);
     }
 
-    /**
-     * @return a posição dessa célula
-     */
+    // @return a posição dessa célula
     public CelulaPosicao getPosicao() {
         return this.posicao;
     }
 
-    /**
-     * @return true se a célula estiver bloqueada, caso contrário false
-     */
+    // @return true se a célula estiver bloqueada, caso contrário false
     public boolean isBloqueado() {
         return this.bloqueado;
     }
 
-    /**
-     * @param bloqueado bloqueia / desbloqueia a célula para evitar mudanças
-     */
+    // @param bloqueado bloqueia / desbloqueia a célula para evitar mudanças
     public void setBloqueado(boolean bloqueado) {
         this.bloqueado = bloqueado;
     }
@@ -57,63 +48,48 @@ public class Celula implements Serializable {
         return getValorUsuario() == 0;
     }
 
-    /**
-     * @return o valor escolhido pelo usuário para essa célula
-     */
+    // @return o valor escolhido pelo usuário para essa célula
     public int getValorUsuario() {
         return this.valorUsuario;
     }
 
-    /**
-     * @param valorUsuario o valor escolhido pelo usuário para esta célula
-     */
+    // @param valorUsuario o valor escolhido pelo usuário para esta célula
     public void setValorUsuario(int valorUsuario) {
         this.valorUsuario = valorUsuario;
     }
 
-    /**
-     * @return o valor verdadeiro (solução) da célula
-     */
+    // @return o valor verdadeiro (solução) da célula
     public int getValorSolucao() {
         return this.valorSolucao;
     }
 
-    /**
-     * Define (set) o valor da solução da célula para valorUsuario
-     */
+    // Define (set) o valor da solução da célula para valorUsuario
     public void setValorSolucao() {
         this.valorSolucao = valorUsuario;
     }
 
-    /**
-     * Define (set) o valor provisório da célula para a entrada do usuário
-     */
+    // Define (set) o valor provisório da célula para a entrada do usuário
     public void armazenaValorProvisorio() {
         this.valorProvisorio = this.valorUsuario;
     }
 
-    /**
-     * recebe o valor provisório da célula
-     */
+    // recebe o valor provisório da célula
     public void buscaValorProvisorio() {
         this.valorUsuario = this.valorProvisorio;
     }
 
-    /**
-     * @return a representação visual desta célula na grade
-     */
+    // @return a representação visual desta célula na grade
     @Override
     public String toString() {
         if (this.isBloqueado()) {
             // return "[" + getValorUsuario() + "]";
-            return "[" + COR_VERMELHA + getValorUsuario() + COR_RESET + "]";
+            return "[" + COR_AZUL + getValorUsuario() + COR_RESET + "]";
         }
         return ("[" + (isVazio() ? "_" : getValorUsuario()) + "]");
     }
 
-    /**
-     * @return a descrição de texto da célula
-     */
+    // @return a descrição de texto da célula
+
     public String descricaoCelula() {
         // Descrição: Posição da célula + subgrade da célula + valor da célula/vazio
         String descricao = "celula na " + getPosicao() + " (subgrade " + (getPosicao().getSubgrade() + 1) + ")";
@@ -124,7 +100,7 @@ public class Celula implements Serializable {
 
     /**
      * Compara 'esta' célula com a célula de entrada
-     *
+     * 
      * @param objeto o objeto de entrada que será comparado ao objeto 'this'
      *               (celula)
      * @return true se os objetos forem iguais, senão false
@@ -138,9 +114,7 @@ public class Celula implements Serializable {
                 && ((Celula) objeto).getPosicao().getColuna() == this.getPosicao().getColuna();
     }
 
-    /**
-     * @return o codigo gerado para a celula
-     */
+    // @return o codigo gerado para a celula
     @Override
     public int hashCode() {
         int hash = 3;

@@ -3,14 +3,11 @@ package br.poli.sudokuprojetofinal;
 import java.io.Serializable;
 
 /**
- * Informações sobre a posição de uma celula na grade/quadro
- *
- * @author Olaf Wrieden
- * @version 1.0
+ * Informações sobre a posição de uma célula na grade/tabuleiro
  */
 public class CelulaPosicao implements Serializable {
 
-    // Atributos de Posição da Celula
+    // Atributos de Posição da Célula
     private final int linha;
     private final int coluna;
     private final int subgrade;
@@ -25,7 +22,7 @@ public class CelulaPosicao implements Serializable {
         this.linha = linha;
         this.coluna = coluna;
 
-        // Avaliar com qual subgrade esta celula se associa
+        // Avaliar com qual subgrade esta célula se associa
         int avaliar = this.linha < 3 ? 0 : this.linha < 6 ? 2 : 4;
         this.subgrade = (this.linha / 3) + (this.coluna / 3) + avaliar;
     }
@@ -45,15 +42,15 @@ public class CelulaPosicao implements Serializable {
     }
 
     /**
-     * @return a posição da subgrade (base 0)
+     * @return a posição da subgrade (baseada em 0)
      */
     public int getSubgrade() {
         return this.subgrade;
     }
 
     /**
-     * @return posição da célula formatada (e.g. 1A), no formato de fail return
-     *         [linha,coluna]
+     * @return posição da célula formatada (por exemplo, 1A), em caso de falha
+     *         retornar formato [linha, coluna]
      */
     @Override
     public String toString() {
